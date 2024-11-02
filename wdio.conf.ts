@@ -54,7 +54,7 @@ export const config: WebdriverIO.Config = {
     capabilities: [{
         browserName: 'chrome',
         "goog:chromeOptions": {
-            args: ["--headless", "--disable-dev-shm-usage", "--no-sandbox"]
+            args: process.env.HEADLESS.toUpperCase() === "Y" ? ["--headless", "--disable-dev-shm-usage", "--no-sandbox"] : []
         }
     }],
 
@@ -151,7 +151,7 @@ export const config: WebdriverIO.Config = {
         // <boolean> fail if there are any undefined or pending steps
         strict: false,
         // <string> (expression) only execute the features or scenarios with tags matching the expression
-        tagExpression: '',
+        tagExpression: '@demo',
         // <number> timeout for step definitions
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.

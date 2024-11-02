@@ -1,0 +1,13 @@
+{
+  "name": "ts-wdio-cucumber",
+  "type": "module",
+  "devDependencies": {
+    "@wdio/allure-reporter": "^9.2.2",
+    "@wdio/cli": "^9.2.8",
+    "@wdio/cucumber-framework": "^9.2.8",
+    "@wdio/local-runner": "^9.2.8"
+  },
+  "scripts": {
+    "wdio": "wdio run ./wdio.conf.ts"
+  }
+}

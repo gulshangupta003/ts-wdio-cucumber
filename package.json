@@ -10,6 +10,7 @@
     "chai": "^5.1.2"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.ts"
+    "wdio": "HEADLESS=Y wdio run ./wdio.conf.ts",
+    "demo": "HEADLESS=Y wdio run ./wdio.conf.ts --cucumberOpts.tagExpression='@demo'"
   }
 }

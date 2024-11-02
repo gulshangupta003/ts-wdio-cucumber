@@ -54,7 +54,7 @@ export const config: WebdriverIO.Config = {
     capabilities: [{
         browserName: 'chrome',
         "goog:chromeOptions": {
-            args: ["--headless"]
+            args: ["--headless", "--disable-dev-shm-usage", "--no-sandbox"]
         }
     }],
 

@@ -1,4 +1,5 @@
 import dotenv from "dotenv"
+import fs from "fs"
 
 dotenv.config()
 
@@ -135,7 +136,10 @@ export const config: WebdriverIO.Config = {
     reporters: ['spec', ['allure', {
         outputDir: 'allure-results',
         disableWebdriverStepsReporting: true,
-        useCucumberStepReporter: true
+        useCucumberStepReporter: true,
+        reportedEnvironmentVars: {
+            "ENV": "NA"    // Set ENVIRONMENT
+        }
     }]],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
@@ -265,8 +269,17 @@ export const config: WebdriverIO.Config = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
-    // },
+    // @ts-ignore: noUnusedParameters
+    afterStep: async function (step, scenario, result, context) {
+        if (!fs.existsSync("./error_screenshots"))
+            fs.mkdirSync("./error_screenshots");
+
+        if (!result.passed) {
+            await browser.takeScreenshot();
+            await browser.saveScreenshot(`./error_screenshots/${scenario.name.toLowerCase().replaceAll(" ", "_")}.png`);
+        }
+    },
+
     /**
      *
      * Runs after a Cucumber Scenario.

@@ -10,7 +10,7 @@ allure-results/
 Allure-report/
 logs/
 package-lock.json
-errorShots/
+error_screenshots/
 app/
 
 # Compiled Java class files
